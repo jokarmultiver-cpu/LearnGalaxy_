@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Study Hub</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+color:white;
+background:linear-gradient(-45deg,#020617,#0f172a,#020617,#1e293b);
+background-size:400% 400%;
+animation:bg 12s infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* DASHBOARD BUTTON */
+
+.dashboard-btn{
+position:fixed;
+top:20px;
+right:20px;
+background:#22c55e;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+color:white;
+cursor:pointer;
+font-size:14px;
+}
+
+.dashboard-btn:hover{
+background:#16a34a;
+}
+
+/* TITLE */
+
+.title{
+text-align:center;
+margin-top:40px;
+font-size:70px;
+font-weight:bold;
+background:linear-gradient(90deg,#ff0000,#ff9900,#00ffcc,#0066ff,#cc00ff);
+-webkit-background-clip:text;
+color:transparent;
+letter-spacing:8px;
+}
+
+.subtitle{
+text-align:center;
+font-size:18px;
+margin-top:10px;
+color:#cbd5f5;
+}
+
+/* SEARCH */
+
+.search-box{
+text-align:center;
+margin-top:40px;
+}
+
+.search-box input{
+width:50%;
+padding:15px;
+font-size:18px;
+border-radius:30px;
+border:none;
+outline:none;
+}
+
+.search-box button{
+padding:15px 25px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#6366f1;
+color:white;
+cursor:pointer;
+margin-left:10px;
+transition:0.3s;
+}
+
+.search-box button:hover{
+background:#4f46e5;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+padding:60px;
+}
+
+/* CARD */
+
+.card{
+height:150px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+font-size:18px;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
+
+.card i{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.05);
+background:linear-gradient(135deg,#6366f1,#22c55e);
+box-shadow:0 15px 40px rgba(0,0,0,0.9);
+}
+
+/* NOTES BOX */
+
+#notesBox{
+display:none;
+position:fixed;
+top:10%;
+left:10%;
+width:80%;
+height:70%;
+background:#111827;
+border-radius:10px;
+padding:20px;
+}
+
+#notesArea{
+width:100%;
+height:70%;
+padding:10px;
+font-size:16px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<button class="dashboard-btn" onclick="goDashboard()">Dashboard</button>
+
+<div class="title">
+STUDY HUB
+</div>
+
+<div class="subtitle">
+Created by Jokar Kartiya
+</div>
+
+<div class="search-box">
+
+<input id="searchInput" placeholder="Search any course or lecture...">
+
+<button onclick="searchCourse()">Search</button>
+
+</div>
+
+<div class="grid">
+
+<div class="card" onclick="openMIT()">
+<i class="fa-solid fa-graduation-cap"></i>
+MIT OCW
+</div>
+
+<div class="card" onclick="openProgramming()">
+<i class="fa-solid fa-code"></i>
+Programming Hub
+</div>
+
+<div class="card" onclick="openNPTEL()">
+<i class="fa-solid fa-school"></i>
+IIT NPTEL
+</div>
+
+<div class="card" onclick="openKhan()">
+<i class="fa-solid fa-book"></i>
+Khan Academy
+</div>
+
+<div class="card" onclick="openLeetCode()">
+<i class="fa-solid fa-laptop-code"></i>
+LeetCode
+</div>
+
+<div class="card" onclick="openSaylor()">
+<i class="fa-solid fa-university"></i>
+Saylor Academy
+</div>
+
+<div class="card" onclick="openAI()">
+<i class="fa-solid fa-robot"></i>
+AI Assistant
+</div>
+
+<div class="card" onclick="openLecture()">
+<i class="fa-solid fa-video"></i>
+Lecture Videos
+</div>
+
+<div class="card" onclick="openBooks()">
+<i class="fa-solid fa-book-open"></i>
+Free Books
+</div>
+
+<div class="card" onclick="openResearch()">
+<i class="fa-solid fa-magnifying-glass"></i>
+Research Papers
+</div>
+
+<div class="card" onclick="openHackerRank()">
+<i class="fa-solid fa-code"></i>
+HackerRank
+</div>
+
+<div class="card" onclick="openCodeforces()">
+<i class="fa-solid fa-terminal"></i>
+Codeforces
+</div>
+
+<div class="card" onclick="openGFG()">
+<i class="fa-solid fa-laptop"></i>
+GeeksforGeeks
+</div>
+
+<div class="card" onclick="openMusic()">
+<i class="fa-solid fa-music"></i>
+Study Music
+</div>
+
+<div class="card" onclick="openNotes()">
+<i class="fa-solid fa-note-sticky"></i>
+Notes Maker
+</div>
+
+<div class="card" onclick="openAITeacher()">
+<i class="fa-solid fa-brain"></i>
+AI Teacher
+</div>
+
+</div>
+
+<div id="notesBox">
+
+<h2>Your Study Notes</h2>
+
+<textarea id="notesArea"></textarea>
+
+<br><br>
+
+<button onclick="saveNotes()">Save Notes</button>
+
+<button onclick="closeNotes()">Close</button>
+
+</div>
+
+<script>
+
+function goDashboard(){
+window.location="../pages/index.html";
+}
+
+function searchCourse(){
+
+var q=document.getElementById("searchInput").value;
+
+window.open("https://www.youtube.com/results?search_query="+q+" lecture");
+window.open("https://scholar.google.com/scholar?q="+q);
+window.open("https://ocw.mit.edu/search/?q="+q);
+window.open("https://www.gutenberg.org/ebooks/search/?query="+q);
+
+}
+
+function openMIT(){window.open("https://ocw.mit.edu");}
+function openProgramming(){window.open("https://jokarkartiya-cyber.github.io/Proagraming-hub/");}
+function openNPTEL(){window.open("https://nptel.ac.in");}
+function openKhan(){window.open("https://www.khanacademy.org");}
+function openLeetCode(){window.open("https://leetcode.com");}
+function openSaylor(){window.open("https://www.saylor.org");}
+function openAI(){window.open("https://chat.openai.com");}
+function openLecture(){window.open("https://www.youtube.com/results?search_query=lecture");}
+function openBooks(){window.open("https://www.gutenberg.org");}
+function openResearch(){window.open("https://scholar.google.com");}
+function openHackerRank(){window.open("https://www.hackerrank.com");}
+function openCodeforces(){window.open("https://codeforces.com");}
+function openGFG(){window.open("https://www.geeksforgeeks.org");}
+function openMusic(){window.open("https://www.youtube.com/results?search_query=lofi+study+music");}
+function openAITeacher(){window.open("https://chat.openai.com");}
+
+function openNotes(){
+document.getElementById("notesBox").style.display="block";
+document.getElementById("notesArea").value=localStorage.getItem("studyNotes");
+}
+
+function closeNotes(){
+document.getElementById("notesBox").style.display="none";
+}
+
+function saveNotes(){
+var text=document.getElementById("notesArea").value;
+localStorage.setItem("studyNotes",text);
+alert("Notes Saved!");
+}
+
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="../js/firebase.js"></script>
+
+<script>
+
+firebase.auth().onAuthStateChanged(function(user){
+
+if(!user){
+
+window.location="../pages/login.html";
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>

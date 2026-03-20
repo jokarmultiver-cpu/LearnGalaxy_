@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Ultimate YouTube Study Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+/* BODY */
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(-45deg,#020617,#0f172a,#020617,#1e293b);
+background-size:400% 400%;
+animation:bg 10s infinite;
+color:white;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* HEADER */
+.header{
+text-align:center;
+padding:25px;
+font-size:35px;
+font-weight:bold;
+background:black;
+box-shadow:0 0 30px #00ffcc;
+}
+
+.creator{
+font-size:14px;
+color:#9ca3af;
+}
+
+/* SEARCH */
+.search{
+text-align:center;
+margin:30px;
+}
+
+.search input{
+width:60%;
+padding:15px;
+border-radius:10px;
+border:2px solid #00ffcc;
+background:black;
+color:#00ffcc;
+font-size:16px;
+}
+
+.search button{
+padding:15px 25px;
+border:none;
+background:#00ffcc;
+cursor:pointer;
+border-radius:10px;
+}
+
+/* SECTION */
+.section{
+font-size:24px;
+margin-left:20px;
+margin-top:30px;
+color:#22c55e;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:20px;
+}
+
+/* CARD */
+.card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+padding:20px;
+border-radius:15px;
+cursor:pointer;
+text-align:center;
+transition:0.4s;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
+
+.card:hover{
+transform:scale(1.08);
+background:linear-gradient(135deg,#6366f1,#22c55e);
+}
+
+/* VIDEO */
+.video-card{
+background:black;
+padding:10px;
+border-radius:10px;
+box-shadow:0 0 15px #00ffcc;
+}
+
+iframe{
+width:100%;
+height:200px;
+border:none;
+border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+🚀 Ultimate Study Hub  
+<div class="creator">Created by Jokar Kartiya</div>
+</div>
+
+<!-- SEARCH -->
+<div class="search">
+<input id="q" placeholder="Search Physics / UPSC / JEE / Math...">
+<button onclick="search()">Search</button>
+</div>
+
+<!-- 🔥 PW -->
+<div class="section">🔥 Physics Wallah</div>
+<div class="grid">
+<div class="card" onclick="load('Physics Wallah full lecture')">PW Main</div>
+<div class="card" onclick="load('PW Foundation')">PW Foundation</div>
+<div class="card" onclick="load('PW JEE')">PW JEE</div>
+<div class="card" onclick="load('PW NEET')">PW NEET</div>
+<div class="card" onclick="load('PW UPSC')">PW UPSC</div>
+<div class="card" onclick="load('PW Olympiad')">PW Olympiad</div>
+<div class="card" onclick="load('PW Coding')">PW Coding</div>
+</div>
+
+<!-- 🔥 KHAN SIR -->
+<div class="section">🔥 Khan Sir</div>
+<div class="grid">
+<div class="card" onclick="load('Khan Sir class')">Khan Sir</div>
+<div class="card" onclick="load('Khan Sir GK')">GK</div>
+<div class="card" onclick="load('Khan Sir History')">History</div>
+</div>
+
+<!-- 🔥 VEDANTU -->
+<div class="section">🔥 Vedantu</div>
+<div class="grid">
+<div class="card" onclick="load('Vedantu class')">Vedantu</div>
+<div class="card" onclick="load('Vedantu JEE')">JEE</div>
+<div class="card" onclick="load('Vedantu NEET')">NEET</div>
+</div>
+
+<!-- 🔥 MORE -->
+<div class="section">🔥 More Platforms</div>
+<div class="grid">
+<div class="card" onclick="load('Unacademy class')">Unacademy</div>
+<div class="card" onclick="load('Adda247 class')">Adda247</div>
+<div class="card" onclick="load('Study IQ class')">Study IQ</div>
+<div class="card" onclick="load('Magnet Brains')">Magnet Brains</div>
+<div class="card" onclick="load('LearnoHub')">LearnoHub</div>
+</div>
+
+<!-- RESULTS -->
+<div id="results" class="grid"></div>
+
+<script>
+
+/* 🔥 API */
+const API_KEY="AIzaSyBfKXdlLHHAPHAMKXJJUofyJeHKSsasVvw";
+
+/* LOAD */
+function load(q){
+document.getElementById("q").value=q;
+search();
+}
+
+/* SEARCH */
+function search(){
+let q=document.getElementById("q").value;
+
+fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=${q} full lecture&key=${API_KEY}`)
+.then(res=>res.json())
+.then(data=>{
+
+let html="";
+
+data.items.forEach(v=>{
+html+=`
+<div class="video-card">
+<h4>${v.snippet.title}</h4>
+<iframe src="https://www.youtube.com/embed/${v.id.videoId}" allowfullscreen></iframe>
+</div>
+`;
+});
+
+document.getElementById("results").innerHTML=html;
+
+});
+}
+
+</script>
+
+</body>
+
+</html>

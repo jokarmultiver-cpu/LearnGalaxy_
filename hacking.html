@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Hacker AI X PRO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+margin:0;
+font-family:monospace;
+background:black;
+color:#00ff9f;
+}
+
+/* MATRIX */
+canvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* HEADER */
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:#020617;
+font-size:22px;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:30px;
+}
+
+/* CARD */
+.card{
+padding:40px 20px;
+text-align:center;
+border-radius:15px;
+background:#111827;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 0 15px #00ff9f;
+font-size:18px;
+}
+
+.card:hover{
+transform:scale(1.08);
+background:#00ff9f;
+color:black;
+}
+
+/* SECTION */
+.section{
+padding:20px;
+font-size:20px;
+text-align:center;
+}
+
+/* AI */
+input{
+padding:15px;
+width:70%;
+font-size:16px;
+background:black;
+border:1px solid #00ff9f;
+color:#00ff9f;
+}
+
+button{
+padding:12px 20px;
+margin:10px;
+font-size:16px;
+background:#00ff9f;
+border:none;
+cursor:pointer;
+}
+
+#aiRes{
+margin-top:15px;
+min-height:50px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<!-- SOUND -->
+<audio id="clickSound" src="https://www.soundjay.com/buttons/button-16.mp3"></audio>
+<audio id="typeSound" src="https://www.soundjay.com/typing/sounds/keyboard-1.mp3"></audio>
+
+<div class="header">
+<div>💀 Hacker Tools Hub</div>
+<div style="font-size:14px;color:#9ca3af;">Created by Jokar Kartiya</div>
+<button onclick="goBack()">Dashboard</button>
+</div>
+
+<!-- MAIN TOOLS -->
+
+<div class="grid">
+
+<div class="card" onclick="openSite('https://www.kali.org')">🐉 Kali Linux</div>
+<div class="card" onclick="openSite('https://www.torproject.org')">🧅 Tor Browser</div>
+<div class="card" onclick="scan()">🛰️ System Scan</div>
+
+</div>
+
+<!-- RECON -->
+
+<div class="section">🧠 Recon & Scanning</div>
+
+<div class="grid">
+<div class="card" onclick="openSite('https://nmap.org')">Nmap</div>
+<div class="card" onclick="openSite('https://www.shodan.io')">Shodan</div>
+<div class="card" onclick="openSite('https://www.netcraft.com')">Netcraft</div>
+</div>
+
+<!-- EXPLOIT -->
+
+<div class="section">💥 Exploitation Tools</div>
+
+<div class="grid">
+<div class="card" onclick="openSite('https://www.metasploit.com')">Metasploit</div>
+<div class="card" onclick="openSite('https://sqlmap.org')">SQLMap</div>
+</div>
+
+<!-- WEB -->
+
+<div class="section">🌐 Web Hacking</div>
+
+<div class="grid">
+<div class="card" onclick="openSite('https://portswigger.net/burp')">Burp Suite</div>
+<div class="card" onclick="openSite('https://www.zaproxy.org')">OWASP ZAP</div>
+</div>
+
+<!-- PASSWORD -->
+
+<div class="section">🔐 Password Tools</div>
+
+<div class="grid">
+<div class="card" onclick="openSite('https://hashcat.net')">Hashcat</div>
+<div class="card" onclick="openSite('https://www.openwall.com/john')">John the Ripper</div>
+</div>
+
+<!-- NETWORK -->
+
+<div class="section">📡 Network Tools</div>
+
+<div class="grid">
+<div class="card" onclick="openSite('https://www.wireshark.org')">Wireshark</div>
+<div class="card" onclick="openSite('https://www.aircrack-ng.org')">Aircrack-ng</div>
+</div>
+
+<!-- AI -->
+
+<div class="section">
+
+🤖 AI Assistant <br><br>
+
+<input id="ai" placeholder="Ask hacking question..."><br>
+
+<button onclick="ai()">Ask</button>
+<button onclick="voice()">🎤</button>
+
+<p id="aiRes"></p>
+
+</div>
+
+<script>
+
+/* MATRIX */
+
+let c=document.getElementById("matrix");
+let ctx=c.getContext("2d");
+
+c.height=window.innerHeight;
+c.width=window.innerWidth;
+
+let letters="01";
+let font=14;
+let columns=c.width/font;
+let drops=[];
+
+for(let x=0;x<columns;x++) drops[x]=1;
+
+function draw(){
+ctx.fillStyle="rgba(0,0,0,0.05)";
+ctx.fillRect(0,0,c.width,c.height);
+
+ctx.fillStyle="#00ff9f";
+ctx.font=font+"px monospace";
+
+for(let i=0;i<drops.length;i++){
+let text=letters[Math.floor(Math.random()*letters.length)];
+ctx.fillText(text,i*font,drops[i]*font);
+
+if(drops[i]*font>c.height && Math.random()>0.975) drops[i]=0;
+drops[i]++;
+}
+}
+setInterval(draw,33);
+
+/* FUNCTIONS */
+
+function goBack(){
+window.location="../pages/index.html";
+}
+
+function openSite(url){
+document.getElementById("clickSound").play();
+window.open(url);
+}
+
+function scan(){
+alert("🛰️ System Scan Complete ✔");
+}
+
+/* AI */
+
+function ai(){
+
+let q=document.getElementById("ai").value.toLowerCase();
+let res="";
+
+if(q.includes("kali")){
+res="Kali Linux is a powerful penetration testing OS with tools like Nmap and Metasploit.";
+}
+else if(q.includes("wifi")){
+res="WiFi hacking is illegal. Learn ethical hacking and network security.";
+}
+else if(q.includes("tool")){
+res="Use tools like Nmap, Burp Suite, SQLMap and Wireshark.";
+}
+else if(q.includes("start")){
+res="Start with networking, then Linux, then tools and practice labs.";
+}
+else{
+res="Ask about hacking, tools, linux, cyber security.";
+}
+
+/* TYPE EFFECT */
+
+let i=0;
+let output="";
+let speed=30;
+
+document.getElementById("aiRes").innerText="";
+
+function type(){
+if(i<res.length){
+output+=res.charAt(i);
+document.getElementById("aiRes").innerText=output;
+document.getElementById("typeSound").play();
+i++;
+setTimeout(type,speed);
+}
+else{
+let speech=new SpeechSynthesisUtterance(res);
+speech.lang="en-US";
+window.speechSynthesis.speak(speech);
+}
+}
+
+type();
+
+}
+
+/* VOICE */
+
+function voice(){
+let rec=new (window.SpeechRecognition||window.webkitSpeechRecognition)();
+rec.onresult=e=>{
+document.getElementById("ai").value=e.results[0][0].transcript;
+};
+rec.start();
+}
+
+</script>
+
+</body>
+
+</html>

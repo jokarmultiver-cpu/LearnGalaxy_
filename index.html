@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>LearnGalaxy Dashboard</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+color:white;
+background:linear-gradient(-45deg,#020617,#0f172a,#020617,#1e293b);
+background-size:400% 400%;
+animation:bg 12s infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+.title{
+text-align:center;
+margin-top:30px;
+font-size:60px;
+font-weight:bold;
+background:linear-gradient(90deg,#ff0000,#ff9900,#00ffcc,#0066ff,#cc00ff);
+-webkit-background-clip:text;
+color:transparent;
+letter-spacing:6px;
+}
+
+.subtitle{
+text-align:center;
+font-size:18px;
+margin-top:10px;
+color:#cbd5f5;
+}
+
+/* PROFILE */
+.profile{
+text-align:center;
+margin-top:30px;
+}
+
+.profile img{
+width:120px;
+height:120px;
+border-radius:50%;
+border:3px solid #22c55e;
+object-fit:cover;
+cursor:pointer;
+}
+
+.profile input{
+display:none;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:40px;
+padding:60px;
+}
+
+.card{
+height:200px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
+
+.card i{
+font-size:50px;
+margin-bottom:15px;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.05);
+background:linear-gradient(135deg,#6366f1,#22c55e);
+box-shadow:0 15px 40px rgba(0,0,0,0.9);
+}
+
+.logout{
+position:fixed;
+top:20px;
+right:20px;
+background:#ef4444;
+border:none;
+padding:10px 20px;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+/* 🔥 WHATSAPP SECTION */
+.whatsapp-section{
+text-align:center;
+padding:30px;
+background:#020617;
+box-shadow:0 0 20px #25D366;
+}
+
+.whatsapp-btn{
+background:#25D366;
+color:black;
+padding:12px 25px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+margin-top:10px;
+}
+
+/* 💬 FLOATING BUTTON */
+.whatsapp-float{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+font-size:30px;
+padding:15px;
+border-radius:50%;
+cursor:pointer;
+box-shadow:0 0 20px #25D366;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<button class="logout" onclick="logout()">Logout</button>
+
+<div class="profile">
+<label for="upload">
+<img id="profilePic" src="https://via.placeholder.com/120">
+</label>
+<input type="file" id="upload" accept="image/*">
+</div>
+
+<div class="title">LEARN GALAXY</div>
+<div class="subtitle">Created by Jokar Kartiya</div>
+
+<div class="grid">
+
+<div class="card" onclick="openStudy()"><i class="fa-solid fa-book"></i>Study Hub</div>
+<div class="card" onclick="openMovie()"><i class="fa-solid fa-film"></i>Movie Hub</div>
+<div class="card" onclick="openProgramming()"><i class="fa-solid fa-code"></i>Programming Hub</div>
+<div class="card" onclick="openGames()"><i class="fa-solid fa-gamepad"></i>Sports Hub</div>
+<div class="card" onclick="openGamesWorld()"><i class="fa-solid fa-earth-americas"></i>Games World</div>
+<div class="card" onclick="openCricket()"><i class="fa-solid fa-baseball-bat-ball"></i>Cricbuzz</div>
+<div class="card" onclick="openHacking()"><i class="fa-solid fa-user-secret"></i>Hacking Tools</div>
+<div class="card" onclick="openStudyApps()"><i class="fa-solid fa-graduation-cap"></i>Study Apps</div>
+<div class="card" onclick="openGovt()"><i class="fa-solid fa-landmark"></i>Govt Jobs</div>
+
+<div class="card" onclick="openYoutubeHub()">
+<i class="fa-brands fa-youtube"></i>
+All Complete YouTube Study
+</div>
+
+</div>
+
+<div class="whatsapp-section">
+<h2>💬 Join Galaxy WhatsApp Group</h2>
+<p>Doubt pucho, updates pao 🔥</p>
+<button class="whatsapp-btn" onclick="openWhatsApp()">Join Now</button>
+</div>
+
+<div class="whatsapp-float" onclick="openWhatsApp()">
+<i class="fa-brands fa-whatsapp"></i>
+</div>
+
+<script>
+
+let upload=document.getElementById("upload");
+let img=document.getElementById("profilePic");
+
+upload.onchange=function(){
+let file=this.files[0];
+let reader=new FileReader();
+reader.onload=function(){
+img.src=reader.result;
+localStorage.setItem("profilePic",reader.result);
+}
+reader.readAsDataURL(file);
+}
+
+window.onload=function(){
+let saved=localStorage.getItem("profilePic");
+if(saved){
+img.src=saved;
+}
+}
+
+/* NAVIGATION */
+function openStudy(){window.location="../dashboards/study.html";}
+function openMovie(){window.location="../dashboards/movie.html";}
+function openProgramming(){window.location="../dashboards/programming.html";}
+function openGames(){window.location="../dashboards/Games.html";}
+function openGamesWorld(){window.location="../dashboards/games-world.html";}
+function openCricket(){window.location="../dashboards/cricket.html";}
+function openHacking(){window.location="../dashboards/hacking.html";}
+function openStudyApps(){window.location="../dashboards/study-apps.html";}
+function openGovt(){window.location="../dashboards/govt-jobs.html";}
+function openYoutubeHub(){window.location="../dashboards/youtube-hub.html";}
+
+/* WHATSAPP */
+function openWhatsApp(){
+window.open("https://whatsapp.com/channel/0029VbCErG95PO19r3GOvo3c");
+}
+
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="../js/firebase.js"></script>
+<script src="../js/script.js"></script>
+
+<!-- ✅ FIXED -->
+<script>
+firebase.auth().onAuthStateChanged(function(user){
+if(!user){
+window.location="/pages/login.html";
+}
+});
+</script>
+
+</body>
+</html>

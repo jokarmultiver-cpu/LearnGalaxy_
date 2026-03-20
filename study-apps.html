@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Ultimate Study Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+color:white;
+background:linear-gradient(-45deg,#020617,#0f172a,#020617,#1e293b);
+background-size:400% 400%;
+animation:bg 12s infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:black;
+}
+
+.title{
+font-size:28px;
+color:#22c55e;
+font-weight:bold;
+}
+
+.creator{
+font-size:14px;
+color:#9ca3af;
+}
+
+/* SEARCH */
+.searchBox{
+text-align:center;
+margin:20px;
+}
+
+input{
+padding:12px;
+width:50%;
+border:none;
+border-radius:6px;
+}
+
+button{
+padding:12px;
+margin-left:10px;
+border:none;
+background:#22c55e;
+cursor:pointer;
+border-radius:6px;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+}
+
+/* CARD */
+.card{
+padding:20px;
+background:rgba(255,255,255,0.05);
+border-radius:15px;
+text-align:center;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.card:hover{
+transform:scale(1.08);
+background:linear-gradient(135deg,#6366f1,#22c55e);
+}
+
+/* SECTION */
+.section{
+padding-left:20px;
+margin-top:25px;
+font-size:20px;
+color:#22c55e;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<div class="title">🌍 Ultimate Study Hub</div>
+<div class="creator">Created by Jokar Kartiya</div>
+<button onclick="goBack()">⬅ Back</button>
+</div>
+
+<div class="searchBox">
+<input type="text" id="search" placeholder="Search anything...">
+<button onclick="searchApp()">Search</button>
+<button onclick="resetApp()">Reset</button>
+<button onclick="aiSuggest()">🤖 AI Recommend</button>
+</div>
+
+<div class="section">🤖 AI Recommended</div>
+<div class="grid" id="aiBox"></div>
+
+<!-- SCHOOL -->
+<div class="section">📚 School (6–12)</div>
+<div class="grid">
+<div class="card">NCERT</div>
+<div class="card">CBSE</div>
+<div class="card">BYJU Learn</div>
+<div class="card">Khan Academy</div>
+</div>
+
+<!-- INDIA EXAMS -->
+<div class="section">🇮🇳 JEE / NEET / Govt</div>
+<div class="grid">
+<div class="card">PW</div>
+<div class="card">Unacademy</div>
+<div class="card">Allen</div>
+<div class="card">Aakash</div>
+<div class="card">Testbook</div>
+<div class="card">Adda247</div>
+</div>
+
+<!-- IIT / GOV -->
+<div class="section">🎓 IIT / Govt Platforms</div>
+<div class="grid">
+<div class="card">NPTEL</div>
+<div class="card">SWAYAM</div>
+<div class="card">IIT Bombay</div>
+<div class="card">IIT Delhi</div>
+</div>
+
+<!-- GLOBAL UNIVERSITY -->
+<div class="section">🌍 Top Universities</div>
+<div class="grid">
+<div class="card">MIT OpenCourseWare</div>
+<div class="card">Harvard Online</div>
+<div class="card">Stanford Online</div>
+<div class="card">Oxford Courses</div>
+</div>
+
+<!-- CODING -->
+<div class="section">💻 Coding</div>
+<div class="grid">
+<div class="card">freeCodeCamp</div>
+<div class="card">GeeksforGeeks</div>
+<div class="card">LeetCode</div>
+<div class="card">HackerRank</div>
+<div class="card">W3Schools</div>
+</div>
+
+<!-- COURSES -->
+<div class="section">📘 Courses Platforms</div>
+<div class="grid">
+<div class="card">Coursera</div>
+<div class="card">Udemy</div>
+<div class="card">edX</div>
+<div class="card">Udacity</div>
+</div>
+
+<script>
+
+function goBack(){
+window.location="../pages/index.html";
+}
+
+/* LINKS */
+
+let apps={
+"pw":"https://www.pw.live",
+"unacademy":"https://unacademy.com",
+"allen":"https://www.allen.ac.in",
+"aakash":"https://www.aakash.ac.in",
+"testbook":"https://testbook.com",
+"adda":"https://www.adda247.com",
+
+"ncert":"https://ncert.nic.in",
+"cbse":"https://cbse.gov.in",
+
+"nptel":"https://nptel.ac.in",
+"swayam":"https://swayam.gov.in",
+
+"mit":"https://ocw.mit.edu",
+"harvard":"https://online-learning.harvard.edu",
+"stanford":"https://online.stanford.edu",
+"oxford":"https://www.conted.ox.ac.uk",
+
+"freecodecamp":"https://www.freecodecamp.org",
+"geeks":"https://www.geeksforgeeks.org",
+"leetcode":"https://leetcode.com",
+"hackerrank":"https://www.hackerrank.com",
+"w3":"https://www.w3schools.com",
+
+"coursera":"https://www.coursera.org",
+"udemy":"https://www.udemy.com",
+"edx":"https://www.edx.org",
+"udacity":"https://www.udacity.com"
+};
+
+document.querySelectorAll(".card").forEach(card=>{
+card.onclick=function(){
+let name=this.innerText.toLowerCase();
+for(let key in apps){
+if(name.includes(key)){
+window.open(apps[key],"_blank");
+}
+}
+};
+});
+
+/* SEARCH */
+
+function searchApp(){
+let input=document.getElementById("search").value.toLowerCase();
+let cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+let text=card.innerText.toLowerCase();
+card.style.display=text.includes(input) ? "block" : "none";
+});
+}
+
+/* RESET */
+
+function resetApp(){
+document.getElementById("search").value="";
+searchApp();
+}
+
+/* AI */
+
+function aiSuggest(){
+let aiBox=document.getElementById("aiBox");
+aiBox.innerHTML="";
+
+let arr=["PW","Unacademy","MIT OpenCourseWare","Coursera","freeCodeCamp"];
+
+arr.forEach(a=>{
+let d=document.createElement("div");
+d.className="card";
+d.innerText=a;
+d.onclick=()=>window.open(apps[a.toLowerCase()]);
+aiBox.appendChild(d);
+});
+}
+
+</script>
+
+</body>
+
+</html>

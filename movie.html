@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Streaming Hub</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#020617;
+color:white;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:black;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+color:#ef4444;
+}
+
+.creator{
+font-size:14px;
+color:#9ca3af;
+}
+
+/* RIGHT HEADER */
+
+.right{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+/* DASHBOARD BUTTON */
+
+.dashboard-btn{
+background:#22c55e;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+color:white;
+cursor:pointer;
+font-size:14px;
+}
+
+.dashboard-btn:hover{
+background:#16a34a;
+}
+
+/* SEARCH */
+
+.search{
+text-align:center;
+padding:20px;
+}
+
+.search input{
+width:60%;
+padding:12px;
+font-size:16px;
+border-radius:6px;
+border:none;
+}
+
+/* HERO */
+
+.hero{
+padding:40px;
+font-size:40px;
+text-align:center;
+}
+
+/* SECTION */
+
+.section{
+padding:30px;
+}
+
+.section h2{
+margin-bottom:15px;
+}
+
+/* GRID */
+
+.grid{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.card{
+width:180px;
+height:110px;
+background:#111827;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:10px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.1);
+background:#ef4444;
+}
+
+/* FOOTER */
+
+.footer{
+text-align:center;
+padding:25px;
+background:black;
+color:#9ca3af;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="logo">
+STREAMING HUB
+</div>
+
+<div class="right">
+
+<div class="creator">
+Created by Jokar Kartiya
+</div>
+
+<button class="dashboard-btn" onclick="goDashboard()">
+Dashboard
+</button>
+
+</div>
+
+</div>
+
+
+<div class="search">
+<input placeholder="Search platform...">
+</div>
+
+
+<div class="hero">
+Watch Movies • Series • Anime • Live TV
+</div>
+
+
+<!-- GLOBAL STREAMING -->
+
+<div class="section">
+
+<h2>🌍 Global Platforms</h2>
+
+<div class="grid">
+
+<div class="card" onclick="openSite('https://www.netflix.com')">Netflix</div>
+<div class="card" onclick="openSite('https://www.primevideo.com')">Prime Video</div>
+<div class="card" onclick="openSite('https://www.disneyplus.com')">Disney+</div>
+<div class="card" onclick="openSite('https://tv.apple.com')">Apple TV+</div>
+<div class="card" onclick="openSite('https://www.paramountplus.com')">Paramount+</div>
+<div class="card" onclick="openSite('https://www.hulu.com')">Hulu</div>
+
+</div>
+
+</div>
+
+
+<!-- INDIAN OTT -->
+
+<div class="section">
+
+<h2>🇮🇳 Indian Platforms</h2>
+
+<div class="grid">
+
+<div class="card" onclick="openSite('https://www.hotstar.com')">Hotstar</div>
+<div class="card" onclick="openSite('https://www.sonyliv.com')">SonyLIV</div>
+<div class="card" onclick="openSite('https://www.zee5.com')">ZEE5</div>
+<div class="card" onclick="openSite('https://www.jiocinema.com')">JioCinema</div>
+<div class="card" onclick="openSite('https://www.mxplayer.in')">MX Player</div>
+
+</div>
+
+</div>
+
+
+<!-- FREE MOVIES -->
+
+<div class="section">
+
+<h2>🎬 Free Movies</h2>
+
+<div class="grid">
+<div class="card" onclick="openSite('https://hdhub4u.hn/')">Free HD Movies</div>
+<div class="card" onclick="openSite('https://www.youtube.com/movies')">YouTube Movies</div>
+<div class="card" onclick="openSite('https://tubitv.com')">Tubi</div>
+<div class="card" onclick="openSite('https://pluto.tv')">Pluto TV</div>
+<div class="card" onclick="openSite('https://www.plex.tv/watch-free')">Plex</div>
+
+</div>
+
+</div>
+
+
+<!-- ANIME -->
+
+<div class="section">
+
+<h2>🍥 Anime</h2>
+
+<div class="grid">
+
+<div class="card" onclick="openSite('https://www.crunchyroll.com')">Crunchyroll</div>
+<div class="card" onclick="openSite('https://www.bilibili.tv')">Bilibili</div>
+
+</div>
+
+</div>
+
+
+<!-- SPORTS -->
+
+<div class="section">
+
+<h2>⚽ Sports</h2>
+
+<div class="grid">
+
+<div class="card" onclick="openSite('https://www.espn.com')">ESPN</div>
+<div class="card" onclick="openSite('https://www.dazn.com')">DAZN</div>
+
+</div>
+
+</div>
+
+
+<!-- LIVE TV -->
+
+<div class="section">
+
+<h2>📺 Live TV</h2>
+
+<div class="grid">
+
+<div class="card" onclick="openSite('https://www.youtube.com/@AajTak/live')">Aaj Tak</div>
+<div class="card" onclick="openSite('https://www.youtube.com/@ndtv/live')">NDTV Live</div>
+<div class="card" onclick="openSite('https://www.youtube.com/@cnn/live')">CNN Live</div>
+<div class="card" onclick="openSite('https://www.youtube.com/@BBCNews/live')">BBC News</div>
+
+</div>
+
+</div>
+
+
+<div class="footer">
+LearnGalaxy • Created by Jokar Kartiya
+</div>
+
+
+<script>
+
+function goDashboard(){
+window.location="../pages/index.html";
+}
+
+function openSite(url){
+window.open(url);
+}
+
+</script>
+
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="../js/firebase.js"></script>
+
+<script>
+
+firebase.auth().onAuthStateChanged(function(user){
+
+if(!user){
+window.location="../pages/login.html";
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
